@@ -5,15 +5,16 @@ import { Task } from '../shared/sdk/models/index';
 
 @Injectable()
 export class TaskService {
-
+  newTask : Task;
   constructor(private taskApi : TaskApi) { }
 
   createTask() {
-    let object = {
+    this.newTask = new Task();
+    this.newTask.tittle = "tittle";
+    this.newTask.description = "description";
 
-    }
     console.log('createTask');
-    this.taskApi.create(object).subscribe((data) => {
+    this.taskApi.create(this.newTask).subscribe((data) => {
       console.log(data);
     });
   }
