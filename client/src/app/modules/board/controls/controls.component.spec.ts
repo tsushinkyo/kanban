@@ -2,7 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ControlsComponent } from './controls.component';
 import { TaskService } from '../task.service';
-import { TaskApi } from '../../shared/sdk/services/index';
+
+
+class MockTaskService {
+  public message: string = 'Test message';
+
+  getQuote() {
+    return Promise.resolve(this.message);
+  }
+}
 
 describe('ControlsComponent', () => {
   let component: ControlsComponent;
@@ -11,7 +19,7 @@ describe('ControlsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ControlsComponent ],
-      providers: [ TaskService, TaskApi ]
+      providers: [  { provide: TaskService, useClass: MockTaskService } ]
     })
     .compileComponents();
   }));

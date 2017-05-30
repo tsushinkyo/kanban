@@ -4,10 +4,11 @@ import { AppComponent } from './app.component';
 
 //My modules
 import { BoardModule } from './modules/board/board.module';
+import { SDKBrowserModule } from './modules/shared/sdk/index';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ BoardModule ],
+      imports: [ BoardModule, SDKBrowserModule.forRoot() ],
       declarations: [
         AppComponent
       ],
