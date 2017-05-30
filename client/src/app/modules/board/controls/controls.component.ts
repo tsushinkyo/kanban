@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { TaskService } from '../task.service';
+
 @Component({
   selector: 'app-controls',
   templateUrl: './controls.component.html',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ControlsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private taskService: TaskService) { }
 
   ngOnInit() {
+  }
+
+  createTask(event){
+    console.log(event);
+    this.taskService.createTask();
   }
 
 }
