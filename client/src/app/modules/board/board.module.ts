@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
 
 import { TaskService } from './task.service';
+import { TaskApi } from '../shared/sdk/services/index';
+import { HttpModule } from '@angular/http';
 
 import { MdButtonModule } from '@angular/material';
 @NgModule({
@@ -13,7 +15,7 @@ import { MdButtonModule } from '@angular/material';
     MdButtonModule,
     BrowserAnimationsModule
   ],
-  providers: [TaskService],
+  providers: [TaskService, TaskApi ],
   declarations: [ControlsComponent],
   exports: [ControlsComponent]
 })

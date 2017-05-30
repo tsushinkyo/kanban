@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { TaskService } from '../task.service';
+import { TaskApi } from '../../shared/sdk/services/index';
 
 @Component({
   selector: 'app-controls',

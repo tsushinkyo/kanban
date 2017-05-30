@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
+import { SDKBrowserModule } from './modules/shared/sdk/index';
 
 
 //My modules
@@ -18,7 +19,8 @@ import { BoardModule } from './modules/board/board.module';
     BrowserModule,
     FormsModule,
     HttpModule,
-    BoardModule
+    BoardModule,
+    SDKBrowserModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
