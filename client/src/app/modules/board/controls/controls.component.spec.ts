@@ -7,7 +7,7 @@ import { TaskService } from '../task.service';
 class MockTaskService {
   public message: string = 'Test message';
 
-  getQuote() {
+  createTask() {
     return Promise.resolve(this.message);
   }
 }
@@ -31,6 +31,13 @@ describe('ControlsComponent', () => {
   });
 
   it('should be created', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should call service', () => {
+    fixture = TestBed.createComponent(ControlsComponent);
+    component = fixture.componentInstance;
+    component.createTask("event");
     expect(component).toBeTruthy();
   });
 });

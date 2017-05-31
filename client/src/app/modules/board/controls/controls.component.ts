@@ -19,5 +19,4 @@ export class ControlsComponent implements OnInit {
     console.log(event);
     this.taskService.createTask();
   }
-
 }
