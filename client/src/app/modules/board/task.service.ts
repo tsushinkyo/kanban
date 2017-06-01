@@ -12,10 +12,13 @@ export class TaskService {
     this.newTask = new Task();
     this.newTask.tittle = "tittle";
     this.newTask.description = "description";
-
-    console.log('createTask');
     this.taskApi.create(this.newTask).subscribe((data) => {
       console.log(data);
     });
+  }
+
+  getTasks() {
+    let filter : any = {};
+    return this.taskApi.find(filter);
   }
 }

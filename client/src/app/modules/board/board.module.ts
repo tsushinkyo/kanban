@@ -9,6 +9,8 @@ import { TaskApi } from '../shared/sdk/services/index';
 import { HttpModule } from '@angular/http';
 
 import { MdButtonModule } from '@angular/material';
+import { BacklogComponent } from './backlog/backlog.component';
+import { BoardComponent } from './board.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +18,7 @@ import { MdButtonModule } from '@angular/material';
     BrowserAnimationsModule
   ],
   providers: [TaskService, TaskApi ],
-  declarations: [ControlsComponent],
-  exports: [ControlsComponent]
+  declarations: [ControlsComponent, BacklogComponent, BoardComponent],
+  exports: [BoardComponent]
 })
 export class BoardModule { }
