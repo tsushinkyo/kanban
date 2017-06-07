@@ -6,7 +6,9 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
 // Redux
-import { NgReduxModule, NgRedux } from '@angular-redux/store'; 
+import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store'; 
+import { rootReducer, IAppState, INITIAL_STATE } from './store';
+import { CounterActions } from './app.actions'; 
 
 // Loopback
 import { SDKBrowserModule } from './modules/shared/sdk/index';
@@ -32,7 +34,18 @@ import { LoginModule } from './modules/login/login.module';
     BoardModule,
     SDKBrowserModule.forRoot()
   ],
-  providers: [],
+  providers: [CounterActions],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
+
+    const storeEnhancers = devTools.isEnabled() ? [ devTools.enhancer() ] : [];
+
+    ngRedux.configureStore(
+      rootReducer,
+      INITIAL_STATE,
+      [],
+      storeEnhancers);
+  }
+ }
