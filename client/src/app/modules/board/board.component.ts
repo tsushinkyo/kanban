@@ -12,4 +12,9 @@ export class BoardComponent implements OnInit {
   ngOnInit() {
   }
 
+  count: number; // <- New
+
+  increment() {} // <- New
+  decrement() {} // <- New
+
 }

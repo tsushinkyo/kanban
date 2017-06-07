@@ -7,7 +7,7 @@ import { BoardComponent } from '../board/board.component';
 
 const appRoutes: Routes = [
     { path: '', component: LoginComponent},
-    { path: 'board', component: LoginComponent},/*,
+    { path: 'board', component: BoardComponent},/*,
     { path: '', loadChildren:'../object/object.module#ObjectModule'}*/
 ];
 

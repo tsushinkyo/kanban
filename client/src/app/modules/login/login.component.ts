@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   });
 
   submit() {
-    this.userApi.login({'email':this.username.value, 'password':this.password.value}, true)
+    this.userApi.login({'username':this.username.value, 'password':this.password.value}, true)
     .subscribe((user) => {
       this.router.navigate(['/board']);
     }, (err) => alert(err.message));
