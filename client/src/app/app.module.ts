@@ -18,6 +18,7 @@ import { SharedModule } from  './modules/shared/shared.module';
 import { BoardModule } from './modules/board/board.module';
 import { RoutingModule } from './modules/routing/routing.module';
 import { LoginModule } from './modules/login/login.module';
+import { RegisterModule } from './modules/register/register.module';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { LoginModule } from './modules/login/login.module';
     SharedModule,
     LoginModule,
     BoardModule,
+    RegisterModule,
     SDKBrowserModule.forRoot()
   ],
   providers: [CounterActions],
