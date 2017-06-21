@@ -1,5 +1,10 @@
 <md-list>
     <md-list-item *ngFor="let task of tasks; let i = index;">
-        <p >{{task.tittle}} - {{task.description}}</p>
+        <div layout="row" flex class="layout-max-width">
+            <md-card>
+            <md-card-title>{{task.tittle}}</md-card-title>
+            <md-card-content>{{task.description}}</md-card-content>
+       </md-card>
+        </div>
     </md-list-item>
 </md-list>
