@@ -1,2 +1,21 @@
-<app-controls></app-controls>
-<app-backlog></app-backlog>
+<div class="control-layer">
+<app-controls ></app-controls>
+</div><br>
+<div class="task-list">
+  <app-backlog [dragula]='"second-bag"'></app-backlog>
+</div>
+<div class="task-list">
+  <app-progress [dragula]='"third-bag"'></app-progress>
+</div>
+<div class="task-list">
+  <app-done></app-done>
+</div>
+
+ <div class='wrapper'>
+        <div class='container'>
+            <div>Drag/drop item 1</div>
+        </div>
+        <div class='container' [dragula]='"first-bag"'>
+            <div>Drag/drop item 2</div>
+        </div>
+    </div>

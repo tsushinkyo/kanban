@@ -26,6 +26,9 @@ export class ControlsComponent implements OnInit {
 
   createNewTask(event){
     console.log(event);
-    this.dialog.open(DialogCreateTaskComponent);
+    this.dialog.open(DialogCreateTaskComponent, {
+      height: '400px',
+      width: '600px',
+    });
   }
 }

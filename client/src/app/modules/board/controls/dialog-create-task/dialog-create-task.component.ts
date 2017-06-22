@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MdDialogRef } from '@angular/material';
+
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { Task }  from '../../../shared/sdk/models/index';
 import { TaskApi } from '../../../shared/sdk/services/index';
@@ -10,7 +12,7 @@ import { TaskService } from '../../task.service';
 })
 export class DialogCreateTaskComponent implements OnInit {
 
-  constructor(private  builder: FormBuilder,private taskApi: TaskApi, private taskService: TaskService) { }
+  constructor(public dialogRef : MdDialogRef<DialogCreateTaskComponent>, private  builder: FormBuilder, private taskApi: TaskApi, private taskService: TaskService) { }
 
   ngOnInit() {
   }
@@ -29,9 +31,8 @@ export class DialogCreateTaskComponent implements OnInit {
   submit() {
     this.taskApi.create({'tittle':this.tittle.value, 'description':this.description.value})
     .subscribe((task) => {
-      console.log(task);
       this.taskService.addTaskBacklog(task);
-      console.log(task);
+      this.dialogRef.close();
     }, (err) => alert(err.message));
   }  
 

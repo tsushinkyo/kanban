@@ -1,13 +1,16 @@
 <form [formGroup]="newTaskForm" (ngSubmit)="submit()">
   <div>
-    <md-input-container>
+    <h2> Create new task </h2>
+  </div>
+  <div>
+    <md-input-container class="full-width">
         <input mdInput placeholder="Tittle" name="tittle" [formControl]="tittle" />
     </md-input-container>
   </div>
   <div>
-    <md-input-container>
-        <input mdInput placeholder="Description" name="description" [formControl]="description" />
+    <md-input-container class="full-width">
+        <textarea mdInput placeholder="Description" name="description" [formControl]="description" ></textarea>
     </md-input-container>
   </div>
-    <button md-raised-button type="submit">Create</button>
+    <button md-raised-button type="submit"  data-dismiss="myModal">Create</button>
 </form>

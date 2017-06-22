@@ -4,6 +4,7 @@ import { ControlsComponent } from './controls/controls.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DragulaModule, DragulaService } from "ng2-dragula/ng2-dragula";
 
 import { TaskService } from './task.service';
 import { TaskApi } from '../shared/sdk/services/index';
@@ -14,9 +15,12 @@ import { MdButtonModule, MdCardModule, MdDialogModule, MdInputModule } from '@an
 import { BacklogComponent } from './backlog/backlog.component';
 import { BoardComponent } from './board.component';
 import { DialogCreateTaskComponent } from './controls/dialog-create-task/dialog-create-task.component';
+import { ProgressComponent } from './progress/progress.component';
+import { DoneComponent } from './done/done.component';
 @NgModule({
   imports: [
     CommonModule,
+    DragulaModule,
     MdButtonModule,
     MdCardModule,
     MdDialogModule,
@@ -25,7 +29,7 @@ import { DialogCreateTaskComponent } from './controls/dialog-create-task/dialog-
     ReactiveFormsModule
   ],
   providers: [TaskService, TaskApi],
-  declarations: [ControlsComponent, BacklogComponent, BoardComponent, DialogCreateTaskComponent],
+  declarations: [ControlsComponent, BacklogComponent, BoardComponent, DialogCreateTaskComponent, ProgressComponent, DoneComponent],
   entryComponents: [DialogCreateTaskComponent],
   exports: [BoardComponent, DialogCreateTaskComponent]
 })
