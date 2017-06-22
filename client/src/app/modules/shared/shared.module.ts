@@ -8,6 +8,7 @@ import {MdCheckboxModule} from '@angular/material';
 import {MdListModule} from '@angular/material';
 import {MdInputModule} from '@angular/material';
 import {MdButtonModule} from '@angular/material';
+import {MdIconModule} from '@angular/material';
 import { SDKBrowserModule } from './sdk/index';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { SDKBrowserModule } from './sdk/index';
     BrowserAnimationsModule,
     MdCheckboxModule,
     MdListModule,
+    MdIconModule,
     SDKBrowserModule,
     MdInputModule,
     MdButtonModule

@@ -1,3 +1,13 @@
-<p>
-  dialog-create-task works!
-</p>
+<form [formGroup]="newTaskForm" (ngSubmit)="submit()">
+  <div>
+    <md-input-container>
+        <input mdInput placeholder="Tittle" name="tittle" [formControl]="tittle" />
+    </md-input-container>
+  </div>
+  <div>
+    <md-input-container>
+        <input mdInput placeholder="Description" name="description" [formControl]="description" />
+    </md-input-container>
+  </div>
+    <button md-raised-button type="submit">Create</button>
+</form>

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject }    from 'rxjs/Subject';
 
 import { TaskApi } from '../shared/sdk/services/index';
 import { Task } from '../shared/sdk/models/index';
@@ -6,6 +7,11 @@ import { Task } from '../shared/sdk/models/index';
 @Injectable()
 export class TaskService {
   newTask : Task;
+  // Observable string sources
+  private newBacklogTask = new Subject<Task>();
+
+  // Observable string streams
+  newBacklogTask$ = this.newBacklogTask.asObservable();
   constructor(private taskApi : TaskApi) { }
 
   createTask() {
@@ -20,5 +26,13 @@ export class TaskService {
   getTasks() {
     let filter : any = {};
     return this.taskApi.find(filter);
+  }
+
+  removeTask(taskid) {
+    return this.taskApi.deleteById(taskid);
+  }
+
+  addTaskBacklog(task) {
+    this.newBacklogTask.next(task);
   }
 }
