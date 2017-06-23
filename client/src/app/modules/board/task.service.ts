@@ -40,4 +40,9 @@ export class TaskService {
   addTaskBacklog(task) {
     this.newBacklogTask.next(task);
   }
+
+  changebag(taskid, taskObject) {
+    return this.taskApi.updateAttributes(taskid, taskObject);
+  } 
+
 }

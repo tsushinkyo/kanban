@@ -1,6 +1,6 @@
 <h2>Backlog </h2>
-<md-list [dragula]='"first-bag"'>
-    <md-list-item *ngFor="let task of tasks; let i = index;">
+<md-list  class="bag" [dragula]='"first-bag"' [attr.data-id]="identifier" [dragulaModel]="tasks">
+    <md-list-item *ngFor="let task of tasks; let i = index;" [attr.data-id]="task.id" [attr.data-tittle]="task.tittle" [attr.data-description]="task.description">
         <div layout="row" flex class="layout-max-width">
             <md-card>
             <md-card-title>{{task.tittle}}</md-card-title>

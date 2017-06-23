@@ -11,7 +11,9 @@ import { DragulaService  } from 'ng2-dragula/ng2-dragula';
 })
 export class BacklogComponent implements OnInit {
   tasks : Task[];
-  constructor(private taskService: TaskService) {
+  identifier : string;
+  constructor(private taskService: TaskService,  private dragulaService: DragulaService) {
+    this.identifier = "backlog";
     taskService.newBacklogTask$.subscribe(
       (task : Task) => {
         console.log('recibido task');
@@ -24,6 +26,13 @@ export class BacklogComponent implements OnInit {
       console.log(tasks);
       this.tasks = tasks;
     });
+
+    this.dragulaService.drop.subscribe((value:any) => {
+     // console.log(`drop: ${value[0]}`);
+     // console.log(value);
+      this.onDrop(value.slice(1));
+    });
+
   }
 
   removeCard(task){
@@ -32,5 +41,18 @@ export class BacklogComponent implements OnInit {
     });
   }
 
+   private onDrop(args) {
+    let [element, target, source] = args;
+    let taskid = element.getAttribute('data-id');
+    let task = {
+      tittle : element.getAttribute('data-tittle'),
+      description : element.getAttribute('data-description'),
+      bag : target.getAttribute('data-id')
+    }
+    this.taskService.changebag(taskid, task ).subscribe((value:any) => {
+       //console.log(`out: ${value[0]}`);
+       console.log(value);
+    });
+  }
   
 }

@@ -10,7 +10,10 @@ import { Task } from '../../shared/sdk/models/Task';
 })
 export class DoneComponent implements OnInit {
   tasks : Task[];
-  constructor( private taskService: TaskService, private dragulaService: DragulaService) { }
+  identifier : string;
+  constructor( private taskService: TaskService, private dragulaService: DragulaService) {
+    this.identifier = "done";
+   }
 
   ngOnInit() {
     this.taskService.getTasks('done').subscribe((tasks : Task[]) => {
@@ -25,7 +28,9 @@ export class DoneComponent implements OnInit {
     });
 
     this.dragulaService.drop.subscribe((value:any) => {
-      console.log(`drop: ${value[0]}`);
+     // console.log(`drop: ${value[0]}`);
+     // console.log(value);
+      this.onDrop(value.slice(1));
     });
     
     this.dragulaService.over.subscribe((value:any) => {
@@ -34,6 +39,20 @@ export class DoneComponent implements OnInit {
     
     this.dragulaService.out.subscribe((value:any) => {
        console.log(`out: ${value[0]}`);
+    });
+  }
+
+   private onDrop(args) {
+    let [element, target, source] = args;
+    let taskid = element.getAttribute('data-id');
+    let task = {
+      tittle : element.getAttribute('data-tittle'),
+      description : element.getAttribute('data-description'),
+      bag : target.getAttribute('data-id')
+    }
+    this.taskService.changebag(taskid, task ).subscribe((value:any) => {
+       //console.log(`out: ${value[0]}`);
+       console.log(value);
     });
   }
 }
