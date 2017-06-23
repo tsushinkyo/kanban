@@ -23,8 +23,13 @@ export class TaskService {
     });
   }
 
-  getTasks() {
+  getTasks(bag) {
     let filter : any = {};
+    filter = { where: {
+        bag : bag
+      }
+    }
+    console.log(filter);
     return this.taskApi.find(filter);
   }
 

@@ -8,7 +8,6 @@ import { DragulaService  } from 'ng2-dragula/ng2-dragula';
   selector: 'app-backlog',
   templateUrl: './backlog.component.html',
   styleUrls: ['./backlog.component.scss'],
-  viewProviders: [DragulaService]
 })
 export class BacklogComponent implements OnInit {
   tasks : Task[];
@@ -21,7 +20,8 @@ export class BacklogComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.taskService.getTasks().subscribe((tasks : Task[]) => {
+    this.taskService.getTasks('backlog').subscribe((tasks : Task[]) => {
+      console.log(tasks);
       this.tasks = tasks;
     });
   }

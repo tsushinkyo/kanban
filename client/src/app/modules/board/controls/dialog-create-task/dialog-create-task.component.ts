@@ -29,7 +29,7 @@ export class DialogCreateTaskComponent implements OnInit {
   });
 
   submit() {
-    this.taskApi.create({'tittle':this.tittle.value, 'description':this.description.value})
+    this.taskApi.create({'tittle':this.tittle.value, 'description':this.description.value, 'bag' : 'backlog'})
     .subscribe((task) => {
       this.taskService.addTaskBacklog(task);
       this.dialogRef.close();

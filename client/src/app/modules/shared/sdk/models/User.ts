@@ -8,7 +8,7 @@ export interface UserInterface {
   "email": string;
   "emailVerified"?: boolean;
   "verificationToken"?: string;
-  "id"?: number;
+  "id"?: any;
   accessTokens?: any[];
 }
 
@@ -19,7 +19,7 @@ export class User implements UserInterface {
   "email": string;
   "emailVerified": boolean;
   "verificationToken": string;
-  "id": number;
+  "id": any;
   accessTokens: any[];
   constructor(data?: UserInterface) {
     Object.assign(this, data);
@@ -78,7 +78,7 @@ export class User implements UserInterface {
         },
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
       },
       relations: {

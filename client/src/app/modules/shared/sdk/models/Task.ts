@@ -4,13 +4,15 @@ declare var Object: any;
 export interface TaskInterface {
   "tittle": string;
   "description": string;
-  "id"?: number;
+  "bag": string;
+  "id"?: any;
 }
 
 export class Task implements TaskInterface {
   "tittle": string;
   "description": string;
-  "id": number;
+  "bag": string;
+  "id": any;
   constructor(data?: TaskInterface) {
     Object.assign(this, data);
   }
@@ -50,9 +52,13 @@ export class Task implements TaskInterface {
           name: 'description',
           type: 'string'
         },
+        "bag": {
+          name: 'bag',
+          type: 'string'
+        },
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
       },
       relations: {

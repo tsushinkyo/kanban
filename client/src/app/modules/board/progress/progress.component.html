@@ -1,3 +1,15 @@
 <h2>In Progress</h2>
-<md-list [dragula]='"bag-2"'>
+<md-list [dragula]='"first-bag"'>
+  <md-list-item *ngFor="let task of tasks; let i = index;">
+        <div layout="row" flex class="layout-max-width">
+            <md-card>
+            <md-card-title>{{task.tittle}}</md-card-title>
+            <md-card-content>{{task.description}}</md-card-content>
+            <md-card-actions>
+                    <button md-button (click)="removeCard(task)"><i class="material-icons">mode_edit</i>Edit</button>
+                    <button md-button type="submit" (click)="removeCard(task)"><i class="material-icons">delete</i>Delete</button>
+            </md-card-actions>
+       </md-card>
+        </div>
+    </md-list-item>
 </md-list>
