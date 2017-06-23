@@ -1,10 +1,13 @@
-<h2>Done</h2>
-<md-list class="bag" [dragula]='"first-bag"' [attr.data-id]="identifier">
-  <md-list-item *ngFor="let task of tasks; let i = index;" [attr.data-id]="task.id" [attr.data-tittle]="task.tittle" [attr.data-description]="task.description">
+<h2>Done  ({{ tasks.length}})</h2>
+<md-list class="bag" [dragula]='"first-bag"' [attr.data-id]="identifier" [dragulaModel]="tasks">
+  <md-list-item *ngFor="let task of tasks; let i = index;" [attr.data-id]="task.id" [attr.data-tittle]="task.tittle" [attr.data-description]="task.description"  [attr.data-remedy]="task.remedy"  [attr.data-jira]="task.jira">
         <div layout="row" flex class="layout-max-width">
             <md-card>
             <md-card-title>{{task.tittle}}</md-card-title>
-            <md-card-content>{{task.description}}</md-card-content>
+            <md-card-content>{{task.description}}<br>
+              <b>Remedy: <a href="https://cau.agbar.net/MidTier/servlet/ViewFormServlet?form=HPD:Help Desk&server=rmdarspro.agbar.local&qual='ID de la incidencia*%2B'%3D%22{{task.remedy}}%22" >{{task.remedy}}</a></b><br>
+              <b>Jira: <a href="http://jira.absapp.net/browse/{{task.jira}}" >{{task.jira}}</a></b>
+            </md-card-content>
             <md-card-actions>
                     <button md-button (click)="removeCard(task)"><i class="material-icons">mode_edit</i>Edit</button>
                     <button md-button type="submit" (click)="removeCard(task)"><i class="material-icons">delete</i>Delete</button>

@@ -12,6 +12,7 @@ export class DoneComponent implements OnInit {
   tasks : Task[];
   identifier : string;
   constructor( private taskService: TaskService, private dragulaService: DragulaService) {
+    this.tasks = [];
     this.identifier = "done";
    }
 
@@ -42,12 +43,20 @@ export class DoneComponent implements OnInit {
     });
   }
 
-   private onDrop(args) {
+  removeCard(task){
+     this.taskService.removeTask(task.id).subscribe((msg) => {
+      this.tasks = this.tasks.filter((currentTask) => currentTask.id != task.id );
+    });
+  }
+
+  private onDrop(args) {
     let [element, target, source] = args;
     let taskid = element.getAttribute('data-id');
     let task = {
       tittle : element.getAttribute('data-tittle'),
       description : element.getAttribute('data-description'),
+      jira: element.getAttribute('data-jira'),
+      remedy: element.getAttribute('data-remedy'),
       bag : target.getAttribute('data-id')
     }
     this.taskService.changebag(taskid, task ).subscribe((value:any) => {

@@ -13,16 +13,17 @@ export class ProgressComponent implements OnInit {
   identifier: string;
   constructor( private taskService: TaskService, private dragulaService: DragulaService) {
     this.identifier = "progress";
+    this.tasks = [];
    }
 
   ngOnInit() {
     this.taskService.getTasks('progress').subscribe((tasks : Task[]) => {
-      console.log(tasks);
+      //console.log(tasks);
       this.tasks = tasks;
     });
 
     this.dragulaService.drag.subscribe((value:any) => {
-          console.log("drag start");
+          //console.log("drag start");
           //console.log(value);
           //console.log("drag stop");
           //console.log(`drag: ${value[0]}`);
@@ -44,14 +45,24 @@ export class ProgressComponent implements OnInit {
     
   }
 
+  removeCard(task){
+     this.taskService.removeTask(task.id).subscribe((msg) => {
+      this.tasks = this.tasks.filter((currentTask) => currentTask.id != task.id );
+    });
+  }
   private onDrop(args) {
+    console.log('onDrop!!!!!!!!!!!!!!!');
     let [element, target, source] = args;
     let taskid = element.getAttribute('data-id');
+    console.log(element);
     let task = {
       tittle : element.getAttribute('data-tittle'),
       description : element.getAttribute('data-description'),
+      jira: element.getAttribute('data-jira'),
+      remedy: element.getAttribute('data-remedy'),
       bag : target.getAttribute('data-id')
     }
+    console.log(task);
     this.taskService.changebag(taskid, task ).subscribe((value:any) => {
        //console.log(`out: ${value[0]}`);
        console.log(value);

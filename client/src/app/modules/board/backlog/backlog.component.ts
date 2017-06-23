@@ -14,6 +14,7 @@ export class BacklogComponent implements OnInit {
   identifier : string;
   constructor(private taskService: TaskService,  private dragulaService: DragulaService) {
     this.identifier = "backlog";
+    this.tasks = [];
     taskService.newBacklogTask$.subscribe(
       (task : Task) => {
         console.log('recibido task');
@@ -23,7 +24,7 @@ export class BacklogComponent implements OnInit {
 
   ngOnInit() {
     this.taskService.getTasks('backlog').subscribe((tasks : Task[]) => {
-      console.log(tasks);
+      //console.log(tasks);
       this.tasks = tasks;
     });
 
@@ -47,6 +48,8 @@ export class BacklogComponent implements OnInit {
     let task = {
       tittle : element.getAttribute('data-tittle'),
       description : element.getAttribute('data-description'),
+      jira: element.getAttribute('data-jira'),
+      remedy: element.getAttribute('data-remedy'),
       bag : target.getAttribute('data-id')
     }
     this.taskService.changebag(taskid, task ).subscribe((value:any) => {

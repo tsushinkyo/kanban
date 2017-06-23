@@ -11,6 +11,12 @@
     <md-input-container class="full-width">
         <textarea mdInput placeholder="Description" name="description" [formControl]="description" ></textarea>
     </md-input-container>
+    <md-input-container class="full-width">
+        <input mdInput placeholder="Remedy code" name="remedy" [formControl]="remedy" />
+    </md-input-container>
+    <md-input-container class="full-width">
+        <input mdInput placeholder="Jira code" name="jira" [formControl]="jira" />
+    </md-input-container>
   </div>
     <button md-raised-button type="submit"  data-dismiss="myModal">Create</button>
 </form>

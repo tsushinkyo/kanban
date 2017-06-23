@@ -23,13 +23,18 @@ export class DialogCreateTaskComponent implements OnInit {
   description: FormControl = new FormControl('',[
     Validators.required
   ]);
+  remedy: FormControl = new FormControl('',[]);
+  jira: FormControl = new FormControl('',[]);
+
   newTaskForm: FormGroup = this.builder.group({
     tittle: this.tittle, 
-    description: this.description
+    description: this.description,
+    remedy: this.remedy, 
+    jira: this.jira
   });
 
   submit() {
-    this.taskApi.create({'tittle':this.tittle.value, 'description':this.description.value, 'bag' : 'backlog'})
+    this.taskApi.create({'tittle':this.tittle.value, 'description':this.description.value, 'bag' : 'backlog', 'remedy' : this.remedy.value, 'jira' : this.jira.value})
     .subscribe((task) => {
       this.taskService.addTaskBacklog(task);
       this.dialogRef.close();

@@ -18,6 +18,14 @@
     "bag": {
       "type": "string",
       "required": true
+    },
+    "remedy": {
+      "type": "string",
+      "required": false
+    },
+    "jira": {
+      "type": "string",
+      "required": false
     }
   },
   "validations": [],
