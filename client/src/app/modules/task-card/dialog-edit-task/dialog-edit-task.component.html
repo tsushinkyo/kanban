@@ -1,22 +1,26 @@
-<form [formGroup]="newTaskForm" (ngSubmit)="submit()">
+<form [formGroup]="editTaskForm" (ngSubmit)="submit()">
   <div>
-    <h2> Create new task </h2>
+    <h2> Edit task </h2>
   </div>
   <div>
     <md-input-container class="full-width">
         <input mdInput placeholder="Tittle" name="tittle" [formControl]="tittle" />
     </md-input-container>
   </div>
+  <br>
   <div>
     <md-input-container class="full-width">
-        <textarea mdInput mdTextareaAutosize mdAutosizeMinRows ="10" placeholder="Description" name="description" [formControl]="description" ></textarea>
+        <textarea mdInput mdTextareaAutosize mdAutosizeMinRows="10" placeholder="Description" name="description" [formControl]="description" ></textarea>
     </md-input-container>
+    <br>
     <md-input-container class="full-width">
         <input mdInput placeholder="Remedy code" name="remedy" [formControl]="remedy" />
     </md-input-container>
+    <br>
     <md-input-container class="full-width">
         <input mdInput placeholder="Jira code" name="jira" [formControl]="jira" />
     </md-input-container>
+    <br>
   </div>
-    <button md-raised-button type="submit"  data-dismiss="myModal">Create</button>
+    <button md-raised-button type="submit"  data-dismiss="myModal">Edit</button>
 </form>

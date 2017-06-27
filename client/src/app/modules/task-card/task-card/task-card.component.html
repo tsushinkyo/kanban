@@ -5,7 +5,7 @@
         <b *ngIf="task?.jira">Jira: <a href="http://jira.absapp.net/browse/{{task.jira}}" >{{task.jira}}</a></b>
     </md-card-content>
     <md-card-actions>
-            <button md-button (click)="removeCard(task)"><i class="material-icons">mode_edit</i>Edit</button>
+            <button md-button (click)=" editTask(task)"><i class="material-icons">mode_edit</i>Edit</button>
             <button md-button (click)="showComments(task)"><i class="material-icons">comment</i>Comments</button>
             <button md-button type="submit" (click)="removeCard(task)"><i class="material-icons">delete</i>Delete</button>
             
