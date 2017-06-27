@@ -3,6 +3,8 @@ import { DragulaService  } from 'ng2-dragula/ng2-dragula';
 import { TaskService } from '../task.service';
 import { Task } from '../../shared/sdk/models/Task';
 
+import { TaskCardComponent } from '../../task-card/task-card/task-card.component';
+
 @Component({
   selector: 'app-done',
   templateUrl: './done.component.html',
@@ -14,6 +16,11 @@ export class DoneComponent implements OnInit {
   constructor( private taskService: TaskService, private dragulaService: DragulaService) {
     this.tasks = [];
     this.identifier = "done";
+    taskService.removedTaskDone$.subscribe(
+      (taskid : Number) => {
+        console.log('recibido task');
+        this.tasks = this.tasks.filter((currentTask) => currentTask.id != taskid );
+    });
    }
 
   ngOnInit() {
@@ -59,7 +66,7 @@ export class DoneComponent implements OnInit {
       remedy: element.getAttribute('data-remedy'),
       bag : target.getAttribute('data-id')
     }
-    this.taskService.changebag(taskid, task ).subscribe((value:any) => {
+    this.taskService.changebag(taskid, task).subscribe((value:any) => {
        //console.log(`out: ${value[0]}`);
        console.log(value);
     });

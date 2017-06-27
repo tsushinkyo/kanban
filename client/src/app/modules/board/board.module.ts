@@ -12,6 +12,8 @@ import { HttpModule } from '@angular/http';
 
 import { MdButtonModule, MdCardModule, MdDialogModule, MdInputModule } from '@angular/material';
 
+import { TaskCardModule } from '../task-card/task-card.module';
+
 import { BacklogComponent } from './backlog/backlog.component';
 import { BoardComponent } from './board.component';
 import { DialogCreateTaskComponent } from './controls/dialog-create-task/dialog-create-task.component';
@@ -26,7 +28,8 @@ import { DoneComponent } from './done/done.component';
     MdDialogModule,
     MdInputModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TaskCardModule
   ],
   providers: [TaskService, TaskApi],
   declarations: [ControlsComponent, BacklogComponent, BoardComponent, DialogCreateTaskComponent, ProgressComponent, DoneComponent],

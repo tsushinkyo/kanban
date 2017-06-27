@@ -3,6 +3,7 @@ import {MdDialog} from '@angular/material';
 
 import { TaskService } from '../task.service';
 import { DialogCreateTaskComponent } from './dialog-create-task/dialog-create-task.component';
+import { TaskCardComponent } from '../../task-card/task-card/task-card.component';
 
 @Component({
   selector: 'app-controls',

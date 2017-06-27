@@ -4,6 +4,8 @@ import { TaskService } from '../task.service';
 import { Task } from '../../shared/sdk/models/Task';
 import { DragulaService  } from 'ng2-dragula/ng2-dragula';
 
+import { TaskCardComponent } from '../../task-card/task-card/task-card.component';
+
 @Component({
   selector: 'app-backlog',
   templateUrl: './backlog.component.html',
@@ -20,6 +22,12 @@ export class BacklogComponent implements OnInit {
         console.log('recibido task');
         this.tasks.push(task);
     });
+
+    taskService.removedTaskBacklog$.subscribe(
+      (taskid : Number) => {
+        console.log('recibido task');
+        this.tasks = this.tasks.filter((currentTask) => currentTask.id != taskid );
+    });
    }
 
   ngOnInit() {
@@ -35,6 +43,10 @@ export class BacklogComponent implements OnInit {
     });
 
   }
+
+  removeComponent(id) {
+     this.tasks = this.tasks.filter((currentTask) => currentTask.id != id );
+}
 
   removeCard(task){
      this.taskService.removeTask(task.id).subscribe((msg) => {

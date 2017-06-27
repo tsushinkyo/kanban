@@ -16,6 +16,7 @@ import { SDKBrowserModule } from './modules/shared/sdk/index';
 //My modules
 import { SharedModule } from  './modules/shared/shared.module';
 import { BoardModule } from './modules/board/board.module';
+import { TaskCardModule } from './modules/task-card/task-card.module';
 import { RoutingModule } from './modules/routing/routing.module';
 import { LoginModule } from './modules/login/login.module';
 import { RegisterModule } from './modules/register/register.module';
@@ -33,6 +34,7 @@ import { RegisterModule } from './modules/register/register.module';
     SharedModule,
     LoginModule,
     BoardModule,
+    TaskCardModule,
     RegisterModule,
     SDKBrowserModule.forRoot()
   ],

@@ -3,6 +3,8 @@ import { DragulaService  } from 'ng2-dragula/ng2-dragula';
 import { TaskService } from '../task.service';
 import { Task } from '../../shared/sdk/models/Task';
 
+import { TaskCardComponent } from '../../task-card/task-card/task-card.component';
+
 @Component({
   selector: 'app-progress',
   templateUrl: './progress.component.html',
@@ -14,6 +16,12 @@ export class ProgressComponent implements OnInit {
   constructor( private taskService: TaskService, private dragulaService: DragulaService) {
     this.identifier = "progress";
     this.tasks = [];
+
+    taskService.removedTaskProgress$.subscribe(
+      (taskid : Number) => {
+        console.log('recibido task');
+        this.tasks = this.tasks.filter((currentTask) => currentTask.id != taskid );
+    });
    }
 
   ngOnInit() {
