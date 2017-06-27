@@ -5,8 +5,8 @@
             <md-card>
             <md-card-title>{{task.tittle}}</md-card-title>
             <md-card-content>{{task.description}}<br>
-            <b>Remedy: <a href="https://cau.agbar.net/MidTier/servlet/ViewFormServlet?form=HPD:Help Desk&server=rmdarspro.agbar.local&qual='ID de la incidencia*%2B'%3D%22{{task.remedy}}%22" >{{task.remedy}}</a></b><br>
-            <b>Jira: <a href="http://jira.absapp.net/browse/{{task.jira}}" >{{task.jira}}</a></b>
+                <b *ngIf="task.remedy" >Remedy: <a href="https://cau.agbar.net/MidTier/servlet/ViewFormServlet?form=HPD:Help Desk&server=rmdarspro.agbar.local&qual='ID de la incidencia*%2B'%3D%22{{task.remedy}}%22" >{{task.remedy}}</a><br></b>
+                <b *ngIf="task.jira">Jira: <a href="http://jira.absapp.net/browse/{{task.jira}}" >{{task.jira}}</a></b>
             </md-card-content>
             <md-card-actions>
                     <button md-button (click)="removeCard(task)"><i class="material-icons">mode_edit</i>Edit</button>
