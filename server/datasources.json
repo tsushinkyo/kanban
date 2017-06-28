@@ -6,11 +6,11 @@
   "mydb": {
     "host": "localhost",
     "port": 27017,
-    "url":  "",
+    "url": "",
     "database": "kanban",
     "password": "lbpass",
     "name": "mydb",
     "user": "lb",
-    "connector": "mongodb"  
+    "connector": "mongodb"
   }
 }

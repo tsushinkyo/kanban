@@ -26,10 +26,23 @@
     "jira": {
       "type": "string",
       "required": false
+    },
+    "commentList": {
+      "type": "array",
+      "required": false
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "comments": {
+      "type": "embedsMany",
+      "model": "Comment",
+      "property": "commentList",
+      "options": {
+        "validate": true,
+        "forceId": false
+      }
+    }},
   "acls": [],
   "methods": {}
 }

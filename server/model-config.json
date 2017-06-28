@@ -38,5 +38,9 @@
   "task": {
     "dataSource": "mydb",
     "public": true
+  },
+  "comment": {
+    "dataSource": "mydb",
+    "public": true
   }
 }

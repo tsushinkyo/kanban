@@ -3,11 +3,24 @@
     <md-card-content>{{task?.description}}<br>
         <b *ngIf="task?.remedy" >Remedy: <a href="https://cau.agbar.net/MidTier/servlet/ViewFormServlet?form=HPD:Help Desk&server=rmdarspro.agbar.local&qual='ID de la incidencia*%2B'%3D%22{{task.remedy}}%22" >{{task.remedy}}</a><br></b>
         <b *ngIf="task?.jira">Jira: <a href="http://jira.absapp.net/browse/{{task.jira}}" >{{task.jira}}</a></b>
+        
     </md-card-content>
     <md-card-actions>
             <button md-button (click)=" editTask(task)"><i class="material-icons">mode_edit</i>Edit</button>
-            <button md-button (click)="showComments(task)"><i class="material-icons">comment</i>Comments</button>
+            <button md-button (click)="showComments(task)" class="badge1" [ngClass]="{ 'badge1': task.commentList?.length > 0 }"  attr.data-badge="{{task.commentList?.length}}"><i class="material-icons">comment</i>Comments</button>
             <button md-button type="submit" (click)="removeCard(task)"><i class="material-icons">delete</i>Delete</button>
-            
     </md-card-actions>
+    <md-list [hidden]="!showCommentsActivated">
+      <md-list-item *ngFor="let comment of task.commentList; let i = index;">
+          <div layout="row" flex class="layout-max-width">
+              {{comment.message}}<button md-button type="submit" (click)="removeComment(i)"><i class="material-icons">delete</i></button>
+          </div>
+      </md-list-item>
+      <form [formGroup]="addCommentForm" (ngSubmit)="addComment(task)">
+        <md-input-container class="full-width">
+          <textarea mdInput mdTextareaAutosize mdAutosizeMinRows="4" placeholder="Message" name="message" [formControl]="message" ></textarea><br>
+        </md-input-container>
+        <button md-button type="submit" ><i class="material-icons">add</i>Add</button>
+      </form>
+    </md-list>
 </md-card>

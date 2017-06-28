@@ -7,6 +7,7 @@ export interface TaskInterface {
   "bag": string;
   "remedy"?: string;
   "jira"?: string;
+  "commentList"?: any;
   "id"?: any;
 }
 
@@ -16,6 +17,7 @@ export class Task implements TaskInterface {
   "bag": string;
   "remedy": string;
   "jira": string;
+  "commentList": any;
   "id": any;
   constructor(data?: TaskInterface) {
     Object.assign(this, data);
@@ -67,6 +69,10 @@ export class Task implements TaskInterface {
         "jira": {
           name: 'jira',
           type: 'string'
+        },
+        "commentList": {
+          name: 'commentList',
+          type: 'any'
         },
         "id": {
           name: 'id',

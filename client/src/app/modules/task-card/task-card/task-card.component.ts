@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import {MdDialog, MdDialogRef} from '@angular/material';
 import { DialogEditTaskComponent } from '../dialog-edit-task/dialog-edit-task.component';
 
@@ -14,13 +14,39 @@ import { TaskService } from '../../board/task.service';
 export class TaskCardComponent implements OnInit {
   
   @Input() public task: Task;
-
-  constructor(private taskService: TaskService, public dialog: MdDialog) { 
-    
+  commentCount: Number;
+  showCommentsActivated: Boolean;
+  constructor(private taskService: TaskService, public dialog: MdDialog, private  builder: FormBuilder) { 
+    this.showCommentsActivated = false;
   }
   ngOnInit() {
+
+  }
+  
+
+  message: FormControl = new FormControl('',[
+    Validators.required
+  ]);
+
+  addCommentForm: FormGroup = this.builder.group({
+    message: this.message,
+  });
+
+  addComment(task) {
+    console.log('add this comment');
+    this.task.commentList.push({ message: this.message.value});
+    this.taskService.updateTask(this.task);
+    this.message.setValue("");
   }
 
+  removeComment(index) {
+    this.task.commentList.splice(index, 1);
+    this.taskService.updateTask(this.task);
+  }
+
+  showBadgeClass(){
+    this.task.commentList.length > 0 ? true : false;
+  }
   removeCard(task){
      this.taskService.removeTask(task).subscribe((msg) => {
       //this.tasks = this.tasks.filter((currentTask) => currentTask.id != task.id );
@@ -29,7 +55,7 @@ export class TaskCardComponent implements OnInit {
   }
 
   showComments(task){
-    console.log('show comments');
+    this.showCommentsActivated = this.showCommentsActivated ? false : true;
   }
 
   editTask(event){
