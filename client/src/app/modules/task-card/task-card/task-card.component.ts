@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
+ 
 import { DialogEditTaskComponent } from '../dialog-edit-task/dialog-edit-task.component';
 
 import { Task } from '../../shared/sdk/models/Task';
@@ -16,7 +17,7 @@ export class TaskCardComponent implements OnInit {
   @Input() public task: Task;
   commentCount: Number;
   showCommentsActivated: Boolean;
-  constructor(private taskService: TaskService, public dialog: MdDialog, private  builder: FormBuilder) { 
+  constructor(private taskService: TaskService, public dialog: MdDialog, private  builder: FormBuilder, public snackBar: MdSnackBar) { 
     this.showCommentsActivated = false;
   }
   ngOnInit() {
@@ -33,7 +34,10 @@ export class TaskCardComponent implements OnInit {
   });
 
   addComment(task) {
-    console.log('add this comment');
+    let snackBarRef = this.snackBar.open('Comment added to task '+ this.task.tittle,'Ok', {
+        duration: 3000
+      });
+    if(!this.task.commentList) this.task.commentList = [];
     this.task.commentList.push({ message: this.message.value});
     this.taskService.updateTask(this.task);
     this.message.setValue("");
@@ -42,6 +46,9 @@ export class TaskCardComponent implements OnInit {
   removeComment(index) {
     this.task.commentList.splice(index, 1);
     this.taskService.updateTask(this.task);
+    let snackBarRef = this.snackBar.open('Comment removed from task '+ this.task.tittle,'Ok', {
+        duration: 3000
+      });
   }
 
   showBadgeClass(){
@@ -51,6 +58,10 @@ export class TaskCardComponent implements OnInit {
      this.taskService.removeTask(task).subscribe((msg) => {
       //this.tasks = this.tasks.filter((currentTask) => currentTask.id != task.id );
       //TODO Show notification
+      console.log(msg);
+      let snackBarRef = this.snackBar.open('Task has been removed','Ok', {
+        duration: 3000
+      }); 
     });
   }
 

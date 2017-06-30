@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MdDialog} from '@angular/material';
+import { MdDialog } from '@angular/material';
 
 import { TaskService } from '../task.service';
 import { DialogCreateTaskComponent } from './dialog-create-task/dialog-create-task.component';
